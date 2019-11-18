@@ -12,7 +12,7 @@ def make_story_table(cur):
 			url TEXT UNIQUE NOT NULL,
 			html TEXT NOT NULL,
 			descript TEXT,
-			pub_date DATETIME,
+			pub_date timestamp
 		);
 	""")
 
@@ -26,7 +26,7 @@ def make_writer_table(cur):
 
 def make_topic_table(cur):
 	cur.execute("""
-		CREATE TABLE category (
+		CREATE TABLE topic (
 			id SERIAL PRIMARY KEY,
 			parent INTEGER,
 			name text
@@ -70,6 +70,7 @@ if __name__ == '__main__':
 	    proj_path = ''
 
 	# Read config values
+	# Connect to database
 	config = configparser.ConfigParser()
 	config.read(conf_file)
 	default_db = config['default_db']
